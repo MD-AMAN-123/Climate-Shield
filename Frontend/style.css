@@ -734,35 +734,6 @@ body {
     .stat-block strong {
         font-size: 1.2rem;
     }
-    .navbar {
-    align-items: flex-start;
-}
-
-    .nav-links {
-    gap: 8px;
-    font-size: 0.95rem;
-}
-    .nav-links {
-    gap: 10px;
-    justify-content: flex-start;
-}
-.navbar {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.nav-links {
-    width: 100%;
-    justify-content: flex-start;
-}
-
-.nav-cta {
-    width: 100%;
-    text-align: center;
-}
-
-    .hero-copy {
-        padding: 12px 0 0;
     
     .steps-card {
         padding: 1.2rem;
@@ -806,19 +777,6 @@ body {
         flex-direction: column;
         width: 100%;
     }
-
-    .chatbot-toggle {
-        right: 18px;
-        bottom: 18px;
-        width: 46px;
-        height: 46px;
-        font-size: 1.2rem;
-    }
-
-    .chatbot-panel {
-        right: 18px;
-        bottom: 78px;
-        width: calc(100vw - 20px);
     
     .btn-primary, .btn-secondary {
         text-align: center;
