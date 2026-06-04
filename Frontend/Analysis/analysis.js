@@ -76,6 +76,7 @@ async function getWeatherData() {
     }
 
     hideMessage();
+    saveRecentSearch(city, state, country);
 
     // Update active report in window context
     window.activeClimateReport = data;
@@ -359,32 +360,32 @@ async function getWeatherData() {
     // Generate Dispatch Logs
     dispatchLogsBox.innerHTML = "";
     const addLog = (msg, tone) => {
-  const timeStr = new Date().toLocaleTimeString();
+      const timeStr = new Date().toLocaleTimeString();
 
-  const badgeMap = {
-    success: {
-      label: "INFO",
-      className: "badge-info",
-      icon: "🛡️",
-    },
-    warning: {
-      label: "WARNING",
-      className: "badge-warning",
-      icon: "⚠️",
-    },
-    critical: {
-      label: "CRITICAL",
-      className: "badge-critical",
-      icon: "🚨",
-    },
-  };
+      const badgeMap = {
+        success: {
+          label: "INFO",
+          className: "badge-info",
+          icon: "🛡️",
+        },
+        warning: {
+          label: "WARNING",
+          className: "badge-warning",
+          icon: "⚠️",
+        },
+        critical: {
+          label: "CRITICAL",
+          className: "badge-critical",
+          icon: "🚨",
+        },
+      };
 
-  const config = badgeMap[tone];
+      const config = badgeMap[tone];
 
-  const entry = document.createElement("div");
-  entry.className = `log-entry ${tone}`;
+      const entry = document.createElement("div");
+      entry.className = `log-entry ${tone}`;
 
-  entry.innerHTML = `
+      entry.innerHTML = `
     <div class="log-header">
       <span class="log-badge ${config.className}">
         ${config.icon} ${config.label}
@@ -397,8 +398,8 @@ async function getWeatherData() {
     </div>
   `;
 
-  dispatchLogsBox.appendChild(entry);
-};
+      dispatchLogsBox.appendChild(entry);
+    };
 
     addLog(
       `Monitoring node activated at Lat ${lat.toFixed(4)}, Lon ${lon.toFixed(4)}`,
@@ -554,3 +555,92 @@ window.useCurrentLocation = async function () {
     },
   );
 };
+function getRecentSearches() {
+  return JSON.parse(localStorage.getItem("recentSearches")) || [];
+}
+
+function saveRecentSearch(city, state, country) {
+  const newSearch = {
+    city,
+    state,
+    country,
+  };
+
+  let searches = getRecentSearches();
+
+  searches = searches.filter(
+    (search) =>
+      !(
+        search.city === city &&
+        search.state === state &&
+        search.country === country
+      ),
+  );
+
+  searches.unshift(newSearch);
+
+  searches = searches.slice(0, 5);
+
+  localStorage.setItem("recentSearches", JSON.stringify(searches));
+
+  displayRecentSearches();
+}
+
+function displayRecentSearches() {
+  const container = document.getElementById("recent-search-list");
+
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const searches = getRecentSearches();
+
+  searches.forEach((search) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "search-chip";
+    button.innerText = search.city;
+
+    button.addEventListener("click", () => {
+      document.getElementById("city").value = search.city;
+      document.getElementById("state").value = search.state;
+      document.getElementById("country").value = search.country;
+
+      getWeatherData();
+    });
+
+    container.appendChild(button);
+  });
+}
+
+function setupRecentSearches() {
+  const clearHistoryBtn = document.getElementById("clear-history-btn");
+  const toggleHistoryBtn = document.getElementById("toggle-history-btn");
+  const recentSearchWrapper = document.getElementById("recent-search-wrapper");
+
+  if (clearHistoryBtn) {
+    clearHistoryBtn.addEventListener("click", () => {
+      localStorage.removeItem("recentSearches");
+      displayRecentSearches();
+    });
+  }
+
+  if (toggleHistoryBtn && recentSearchWrapper) {
+    toggleHistoryBtn.addEventListener("click", () => {
+      recentSearchWrapper.classList.toggle("show-history");
+
+      if (recentSearchWrapper.classList.contains("show-history")) {
+        toggleHistoryBtn.innerText = "Recent Searches ▲";
+      } else {
+        toggleHistoryBtn.innerText = "Recent Searches ▼";
+      }
+    });
+  }
+
+  displayRecentSearches();
+}
+
+document.addEventListener("DOMContentLoaded", setupRecentSearches);

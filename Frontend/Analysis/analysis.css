@@ -230,25 +230,25 @@ body::before {
 }
 
 .mini-stats div {
-    padding: 18px 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .mini-stats div:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
 }
 
 .mini-stats strong {
-    display: block;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 6px;
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .mini-stats span {
@@ -301,25 +301,25 @@ body::before {
 }
 
 .analysis-intro-meta div {
-    padding: 14px 16px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .analysis-intro-meta div:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
 }
 
 .analysis-intro-meta strong {
-    display: block;
-    margin-bottom: 6px;
-    color: #7dd3fc;
-    font-size: 1.05rem;
-    font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+  color: #7dd3fc;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .analysis-intro-meta span {
@@ -1278,7 +1278,7 @@ button:hover {
 }
 
 .log-entry {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 14px;
   padding: 14px;
   border-left: 4px solid;
@@ -1290,7 +1290,7 @@ button:hover {
 }
 .log-entry:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
 }
 .log-entry.success {
   border-left-color: #22c55e;
@@ -1342,19 +1342,18 @@ button:hover {
   font-weight: 700;
 }
 
-
 .badge-info {
-  background: rgba(56,189,248,0.15);
+  background: rgba(56, 189, 248, 0.15);
   color: #38bdf8;
 }
 
 .badge-warning {
-  background: rgba(245,158,11,0.15);
+  background: rgba(245, 158, 11, 0.15);
   color: #f59e0b;
 }
 
 .badge-critical {
-  background: rgba(239,68,68,0.15);
+  background: rgba(239, 68, 68, 0.15);
   color: #ef4444;
 }
 
@@ -1388,7 +1387,7 @@ button:hover {
 }
 
 .demo-indicator.hidden {
-    display: none !important;
+  display: none !important;
 }
 
 /* RESPONSIVE LAYOUT UPDATES */
@@ -1441,4 +1440,72 @@ button:hover {
 
 .contact-links a:hover {
   opacity: 0.8;
+}
+.recent-search-container {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.recent-search-container {
+  margin-top: 20px;
+}
+
+.recent-search-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.toggle-history-btn,
+.clear-history-btn {
+  width: auto;
+  min-width: 180px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.toggle-history-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.clear-history-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.hidden-history {
+  display: none;
+}
+
+.show-history {
+  display: block;
+  margin-top: 16px;
+}
+
+#recent-search-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-chip {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.search-chip:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
