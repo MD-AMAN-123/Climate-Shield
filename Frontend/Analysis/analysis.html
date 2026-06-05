@@ -137,16 +137,16 @@
 
                     <div class="button-group">
 
-                        <button id="analyze-btn" onclick="getWeatherData()">
-                            Analyze Climate Risk
-                        </button>
-                        <button type="button" onclick="useCurrentLocation()">
-                            Use Current Location
-                        </button>
+    <button id="analyze-btn" onclick="getWeatherData()">
+     Analyze Climate Risk
+    </button>
+    <button type="button" onclick="useCurrentLocation()">
+     Use Current Location
+    </button>
 
-                        <button class="clear-btn" onclick="clearResults()">
-                            Clear All
-                        </button>
+    <button class="clear-btn" onclick="clearResults()">
+         🗑 Clear All
+    </button>
 
                     </div>
                     <div id="loading" class="loading hidden">
@@ -154,7 +154,21 @@
                     </div>
 
                     <div id="message-box" class="message-box hidden"></div>
+                    <div id="recent-search-container" class="recent-search-container">
+    <div class="recent-search-header">
+        
+        <button id="toggle-history-btn" class="toggle-history-btn" type="button">
+            Recent Searches ▼
+        </button>
+        <button id="clear-history-btn" class="clear-history-btn" type="button">
+            🗑 Clear History
+        </button>
+    </div>
 
+    <div id="recent-search-wrapper" class="hidden-history">
+        <div id="recent-search-list"></div>
+    </div>
+</div>
                 </div>
 
                 <div id="results" class="glass-card results-card hidden">
