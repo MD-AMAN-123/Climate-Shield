@@ -1,70 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Climate Shield — real-time climate intelligence: flood & heatwave risk monitoring, instant alerts for emergency awareness.">
+    <title>Climate Shield | Climate Intelligence & Risk Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Backend base URL for API calls (set this to your Flask/Gunicorn Render service URL) -->
+    <script>
+        // Example: window.__BACKEND_URL__ = "https://climate-shield-backend.onrender.com";
+        window.__BACKEND_URL__ = window.__BACKEND_URL__ || "";
+    </script>
+</head>
+<body>
 
-    <title>Climate Shield | Home</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <div class="ambient-glow"></div>
+    <div class="grid-texture"></div>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link rel="icon" type="image/png" href="favicon.png" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body>
-    <div class="background-overlay"></div>
-
-    <div class="page-shell">
-      <nav class="navbar">
-        <a class="brand" href="#home">
-          <span class="brand-mark">🌍</span>
-          <span>
-            <strong>Climate Shield</strong>
-            <small>Climate intelligence, instantly</small>
-          </span>
-        </a>
-
-        <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="Analysis/analysis.html">Analyze</a>
-          <a href="#contact">Contact</a>
-          <a
-            href="https://github.com/thetechguardians/Climate-Shield"
-            target="_blank"
-            >GitHub</a
-          >
-        </div>
-        <button id="theme-toggle" class="theme-toggle">☾</button>
-        <a class="nav-cta" href="Analysis/analysis.html">Start Analysis</a>
-      </nav>
-
-      <main id="home" class="container">
-        <section class="hero">
-          <div class="hero-copy">
-            <span class="eyebrow">Real-time weather risk monitoring</span>
-
-            <h1>Predict climate threats before they interrupt your day.</h1>
-
-            <p>
-              Climate Shield combines live weather signals with fast risk
-              scoring to highlight flood and heatwave exposure in seconds.
-            </p>
-
-            <div class="hero-actions">
-              <a class="primary-action" href="Analysis/analysis.html"
-                >Analyze a location</a
-              >
-              <a class="secondary-action" href="#features">View insights</a>
+    <div class="app-container">
+        <!-- Navigation: refined glass + proper alignment -->
+        <nav class="nav-bar">
+            <a class="brand-link" href="#home">
+                <span class="brand-icon">🌍</span>
+                <div class="brand-title">
+                    <strong>Climate Shield</strong>
+                    <small>Climate intelligence, instantly</small>
+                </div>
+            </a>
+            <div class="nav-menu">
+                <a href="#features">Features</a>
+                <a href="Analysis/analysis.html">Analyze</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/thetechguardians/Climate-Shield" target="_blank" rel="noopener">GitHub</a>
             </div>
 
             <div class="hero-stats">
