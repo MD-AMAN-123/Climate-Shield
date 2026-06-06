@@ -625,16 +625,7 @@ button:hover {
 
 .footer {
   margin-top: 30px;
-  padding: 22px 24px;
   border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--panel-strong);
-  color: var(--text);
-  backdrop-filter: blur(18px);
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) auto;
-  gap: 16px 24px;
-  align-items: center;
   box-shadow: var(--shadow);
 }
 
