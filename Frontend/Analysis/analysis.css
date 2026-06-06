@@ -1568,6 +1568,7 @@ body.light-mode .results-kicker,
 body.light-mode .status-pill,
 body.light-mode .eyebrow,
 body.light-mode .clear-btn,
+body.light-mode .log-message,
 body.light-mode .demo-indicator {
   color: var(--text) !important;
 }
