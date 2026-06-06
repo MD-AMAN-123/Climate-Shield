@@ -429,6 +429,7 @@ def get_weather_insights():
             "forecast": forecast,
 
             "alerts": calculated_alerts,
+        })
 
     except Exception as general_err:
         print("Weather Route Error:")
