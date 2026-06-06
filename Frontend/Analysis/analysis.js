@@ -65,6 +65,53 @@ function getRiskLevel(score, riskType) {
   if (score <= 0.69) return { label: "High", cssClass: "high", desc: d.high };
   return { label: "Critical", cssClass: "critical", desc: d.critical };
 }
+function generateRecommendations(risks) {
+  const recommendations = [];
+
+  if (risks.flood >= 0.7) {
+    recommendations.push(
+      "Avoid low-lying and flood-prone areas.",
+      "Keep emergency supplies and important documents ready."
+    );
+  }
+
+  if (risks.heat >= 0.7) {
+    recommendations.push(
+      "Stay hydrated throughout the day.",
+      "Avoid outdoor activities during peak heat hours."
+    );
+  }
+
+  if (risks.wildfire >= 0.7) {
+    recommendations.push(
+      "Avoid forested areas and open flames.",
+      "Prepare for possible evacuation notices."
+    );
+  }
+
+  if (risks.cyclone >= 0.7) {
+    recommendations.push(
+      "Secure loose outdoor objects.",
+      "Keep emergency kits and communication devices ready."
+    );
+  }
+
+  if (risks.drought >= 0.7) {
+    recommendations.push(
+      "Conserve water whenever possible.",
+      "Avoid unnecessary water consumption.",
+      "Follow local water restriction guidelines."
+    );
+  }
+
+  if (recommendations.length === 0) {
+    recommendations.push(
+      "Current climate risks are low. Continue monitoring weather conditions."
+    );
+  }
+
+  return recommendations;
+}
 
 async function getWeatherData() {
   const city = document.getElementById("city").value.trim();
@@ -169,8 +216,7 @@ async function getWeatherData() {
     labelEl.textContent = level.label;
     labelEl.className = "risk-label " + level.cssClass;
     card.querySelector(".risk-description").textContent = level.desc;
-
-    const wildfireCard = document.querySelector(".risk-card.wildfire");
+        const wildfireCard = document.querySelector(".risk-card.wildfire");
     const wildfireScore = data.risks.wildfire_risk;
     document.getElementById("wildfire-risk").innerText = wildfireScore;
     score = wildfireScore;
@@ -202,34 +248,55 @@ async function getWeatherData() {
     labelEl.textContent = level.label;
     labelEl.className = "risk-label " + level.cssClass;
     card.querySelector(".risk-description").textContent = level.desc;
+const recommendationsPanel = document.getElementById(
+      "recommendations-panel",
+    );
+
+    const recommendationsList = document.getElementById("recommendations-list");
+
+    const recommendations = generateRecommendations(
+      {
+        flood: floodScore,
+        heat: heatScore,
+        wildfire: wildfireScore,
+        cyclone: cycloneScore,
+        drought: droughtScore
+      }
+    );
+
+    recommendationsList.innerHTML = recommendations
+      .map((item) => `<li>✅ ${item}</li>`)
+      .join("");
+
+    recommendationsPanel.classList.remove("hidden");
 
     // Store last analysis result so ClimateBot can use it
     window.lastAnalysisContext = {
       location: {
-        city:    city,
-        state:   state,
+        city: city,
+        state: state,
         country: country,
       },
       weather: {
         temperature: data.weather.temperature,
-        humidity:    data.weather.humidity,
-        rainfall:    data.weather.rainfall,
-        wind_speed:  data.weather.wind_speed,
+        humidity: data.weather.humidity,
+        rainfall: data.weather.rainfall,
+        wind_speed: data.weather.wind_speed,
       },
       risks: {
-        flood_risk:    data.risks.flood_risk,
-        heat_risk:     data.risks.heat_risk,
+        flood_risk: data.risks.flood_risk,
+        heat_risk: data.risks.heat_risk,
         wildfire_risk: data.risks.wildfire_risk,
-        cyclone_risk:  data.risks.cyclone_risk,
-        drought_risk:  data.risks.drought_risk,
+        cyclone_risk: data.risks.cyclone_risk,
+        drought_risk: data.risks.drought_risk,
       },
     };
 
     // Update chatbot context badge if it exists
-    const badge = document.getElementById('chatbot-context-badge');
+    const badge = document.getElementById("chatbot-context-badge");
     if (badge) {
-      badge.textContent = '📍 ' + city + ', ' + state;
-      badge.style.display = 'inline-block';
+      badge.textContent = "📍 " + city + ", " + state;
+      badge.style.display = "inline-block";
     }
 
     // Demo indicator
