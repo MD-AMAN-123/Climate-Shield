@@ -111,16 +111,15 @@ def get_coordinates(city, state, country):
         print("Geocoding Data (attempt 1):", data)
 
         # -------------------------------------------------
-        # ATTEMPT 2: if attempt 1 failed, try city + country
+        # ATTEMPT 2: if attempt 1 failed, try free-text with state
         # -------------------------------------------------
 
         if not data:
 
-            print("Attempt 1 failed. Retrying with city + country only...")
+            print("Attempt 1 failed. Retrying with free-text city + state + country...")
 
             params = {
-                "city":    city,
-                "country": country,
+                "q":       f"{city}, {state}, {country}",
                 "format":  "json",
                 "limit":   1
             }
