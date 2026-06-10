@@ -126,10 +126,11 @@ body::before {
   backdrop-filter: blur(18px);
   box-shadow: var(--shadow);
   margin-bottom: 28px;
-  width: calc(100% - 32px); 
-  max-width: 1200px;
-  margin: 0 auto;
+   width: calc(100% - 32px);
+  max-width: 1200px;         /* caps it on large screens */
+  margin: 0 auto; 
 }
+
 body.light-mode .navbar {
   background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(20px);
@@ -888,6 +889,7 @@ button:hover {
   }
 .navbar{
     display:flex;
+    position:fixed;
     flex-direction: row;
     align-items: center;
     align-content: center;
@@ -913,6 +915,7 @@ button:hover {
 
   .hero-copy h1 {
     max-width: 12ch;
+    margin-top: 20vh;
   }
 }
 
