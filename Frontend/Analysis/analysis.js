@@ -239,6 +239,10 @@ async function getWeatherData() {
     }
 
     hideMessage();
+    
+    if (typeof saveRecentSearch === "function") {
+      saveRecentSearch(city, state, country);
+    }
 
     // Update active report in window context
     window.activeClimateReport = data;
@@ -1029,6 +1033,93 @@ async function fetchAndRenderChart(lat, lon) {
     } catch (err) {
         console.error("Error fetching chart data:", err);
     }
+
+function getRecentSearches() {
+  return JSON.parse(localStorage.getItem("recentSearches")) || [];
+}
+
+function saveRecentSearch(city, state, country) {
+  if (!city || !state || !country) return;
+
+  const newSearch = {
+    city,
+    state,
+    country,
+  };
+
+  let searches = getRecentSearches();
+
+  searches = searches.filter(
+    (search) =>
+      !(
+        search.city.toLowerCase() === city.toLowerCase() &&
+        search.state.toLowerCase() === state.toLowerCase() &&
+        search.country.toLowerCase() === country.toLowerCase()
+      ),
+  );
+
+  searches.unshift(newSearch);
+  searches = searches.slice(0, 5);
+
+  localStorage.setItem("recentSearches", JSON.stringify(searches));
+
+  displayRecentSearches();
+}
+
+function displayRecentSearches() {
+  const container = document.getElementById("recent-search-list");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const searches = getRecentSearches();
+
+  searches.forEach((search) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "search-chip";
+    button.innerText = search.city;
+
+    button.addEventListener("click", () => {
+      document.getElementById("city").value = search.city;
+      document.getElementById("state").value = search.state;
+      document.getElementById("country").value = search.country;
+
+      getWeatherData();
+    });
+
+    container.appendChild(button);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayRecentSearches();
+
+  const toggleBtn = document.getElementById("toggle-history-btn");
+  const wrapper = document.getElementById("recent-search-wrapper");
+  const clearBtn = document.getElementById("clear-history-btn");
+  
+  if (toggleBtn && wrapper) {
+    toggleBtn.addEventListener("click", () => {
+      wrapper.classList.toggle("show-history");
+
+      if (wrapper.classList.contains("show-history")) {
+        toggleBtn.innerText = "Recent Searches ▲";
+      } else {
+        toggleBtn.innerText = "Recent Searches ▼";
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      localStorage.removeItem("recentSearches");
+      displayRecentSearches();
+    });
+  }
+});
 }
 
 // Theme toggle logic is handled globally by theme.js
